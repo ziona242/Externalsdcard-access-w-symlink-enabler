@@ -1,4 +1,4 @@
-# Externalsdcard-access-w-symlink-enabler
+# External Sdcard Symlink And RW Access Enabler
 
 Enable write access to external sdcards with symlinks made in root an mnt folder for Marshmallow , Nougat &amp; Oero . Pie is work still in progress!
 
