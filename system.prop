@@ -1,0 +1,46 @@
+# This file will be read by resetprop
+# Example: Change dpi
+# ro.sf.lcd_density=320
+
+# Sepolicy reload on inject
+resetprop selinux.reload_policy 0 || setprop selinux.reload_policy 1
+
+# Make system debuggable for apps
+resetprop ro.debuggable 0 || setprop ro.debuggable 1
+
+# Try Forcing ESDFS and SDCardFS to be disabled
+resetprop persist.esdfs_sdcard false || setprop persist.esdfs_sdcard false
+resetprop persist.sys.sdcardfs force_off || setprop persist.sys.sdcardfs force_off
+
+# Try Forcing FUSE to be enabled
+resetprop persist.fuse_sdcard false || setprop persist.fuse_sdcard true
+
+# Force enable Permissive at startup
+resetprop persist.selinux.enforcing 1 || setprop persist.selinux.enforcing 0
+resetprop ro.build.selinux 1 || setprop ro.build.selinux 0
+ 
+# Full Permissive system support disable selinux & adb extras
+androidboot.selinux=permissive
+drm.service.enabled=false
+keyguard.no_require_sim=true
+persist.adb.notify=0
+persist.android.strictmode=0
+persist.cne.feature=0
+persist.security.ams.enforcing=0
+persist.selinux.enforcing=0
+persist.service.adb.enable=1
+persist.sys.root_access=1
+persist.sys.strict_op_enable=false
+persist.sys.strictmode.disable=1
+persist.sys.usb.config=mtp,acm,adb
+ro.adb.qemud=0
+ro.adb.secure=0
+ro.allow.mock.location=1
+ro.build.selinux=0
+ro.build.selinux.enforce=0
+ro.debuggable=1
+
+# Fuse sdcard backup if setprop failed
+persist.fuse_sdcard=true
+ro.sys.sdcardfs=false
+persist.sys.sdcardfs=false
